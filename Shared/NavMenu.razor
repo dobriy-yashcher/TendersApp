@@ -1,0 +1,46 @@
+﻿
+
+@inject TendersApp.Data.MongoDb userService
+@inject NavigationManager navManager
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">TendersApp</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="navMenuCss @NavMenuCssClass" @onclick="ToggleNavMenu" >
+    @if (IsAvailable)
+    {
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="personalPage">
+                    <span class="personal" aria-hidden="true"></span> Профиль
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="projectsPage">
+                    <span class="projects" aria-hidden="true"></span> Проекты
+                </NavLink>
+            </div>
+        </nav>
+    }
+</div>
+
+@code {
+    public bool Update
+    {
+        get => true;
+        set => StateHasChanged();
+    }
+    private bool IsAvailable => (userService.currentUser != null) ? true : false;
+    
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
+}

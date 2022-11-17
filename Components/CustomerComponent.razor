@@ -1,0 +1,31 @@
+﻿@using TendersApp.Data
+@using TendersApp.Enums
+@using TendersApp.Users
+@inject IJSRuntime JsRuntime
+@inject TendersApp.Data.MongoDb MongoDb
+
+<EditForm Model="@currentCustomer" OnValidSubmit="@(() => SaveData())">
+    <br /><br />
+    <label>Область:</label>
+    <select class="form-control" required @bind="@currentCustomer.Division">
+        <option disabled> -- Выберите отдел -- </option>
+        <option class="form-control" value="@TypesOfProject.Газификация">Газификация</option>
+        <option class="form-control" value="@TypesOfProject.Водоснабжение">Водоснабжение</option>
+    </select>
+    <br /><br />
+    <label>Имя:</label> <input placeholder="James" @bind-value="@currentCustomer.FirstName"></input>
+    <br /><br />
+    <label>Фамилия:</label> <input placeholder="Bond" @bind-value="@currentCustomer.LastName"></input>
+    <br /><br />
+    <button type="submit">Save changes</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Customer currentCustomer { get; set; }
+
+    private void SaveData()
+    {
+        MongoDb.UpdateCustomer(currentCustomer);
+    }
+}

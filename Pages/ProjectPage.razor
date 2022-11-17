@@ -1,0 +1,53 @@
+﻿@page "/projectPage"
+
+@using TendersApp.Data
+@using TendersApp.Users
+@using TendersApp.Components
+@using TendersApp.Documents
+@inject IJSRuntime JsRuntime
+@inject MongoDb MongoDb
+@inject Data.FileSystemService fileSysServ
+
+
+
+@if(MongoDb.currentUser?.Role == Enums.Roles.Customer)
+{
+    
+    customer =  MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login);
+    @*<CreateNewProject department=@customer.Division></CreateNewProject>*@
+
+    if (fileSysServ.currentProject?.Name is null)
+    {
+        <CreateNewProject department=@customer.Division></CreateNewProject>
+    }
+    else
+    {
+        <CustomerProject></CustomerProject>
+    }
+
+}
+@if (MongoDb.currentUser?.Role == Enums.Roles.Designer)
+{
+    designer = MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login);
+    <DesignerProject></DesignerProject>
+}
+
+@if (MongoDb.currentUser?.Role == Enums.Roles.Developer)
+{
+    developer = MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login);
+    <DeveloperProject></DeveloperProject>
+}
+
+@code {
+    [Parameter]
+    public bool IsNew { get; set; }
+
+    Customer customer;
+    Designer designer;
+    Developer developer;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

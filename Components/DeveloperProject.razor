@@ -1,0 +1,63 @@
+﻿@using TendersApp.Data
+@using TendersApp.Users
+@using Microsoft.AspNetCore.Mvc
+@using TendersApp.Documents
+@inject FileSystemService fileSysServ
+@inject MongoDb mongoConnection
+@inject ProjectService projectService
+@inject IJSRuntime JS
+@inject NavigationManager nManager
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название документа</th>
+            <th>Название файла</th>
+            <th>Требуется</th>
+            <th>Подтвержден</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in fileSysServ.currentProject.Documents)
+        {
+            if (doc.IsApproved)
+            {
+                <tr>
+                    <td>@doc.Name</td>
+                    <td>@doc.FileName</td>
+                    <td><input type="checkbox" disabled @bind="doc.IsRequired" /></td>
+                    <td><input type="checkbox" disabled @bind="doc.IsApproved" /></td>
+                    <td><a class="form-control" href="documents/@doc.FileName" download="@doc.FileName">Download</a></td>
+                    <td></td>
+                </tr>
+            }
+            else
+            {
+                <tr disabled>
+                    <td>@doc.Name</td>
+                    <td>@doc.FileName</td>
+                    <td><input type="checkbox" disabled @bind="doc.IsRequired" /></td>
+                    <td><input type="checkbox" disabled @bind="doc.IsApproved" /></td>
+                    <td><a class="form-control" href="documents/@doc.FileName" download="@doc.FileName">Download</a></td>
+                    <td><InputFile accept=".pdf" class="btn btn-primary mb-3" OnChange="((e) => fileSysServ.LoadFiles(e, doc))">Upload</InputFile></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<button @onclick="CloseComp" class="btn btn-primary mb-3">Save changes</button>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    public void CloseComp()
+    {
+        projectService.UpdateProjectInDataBase(fileSysServ.currentProject);
+        nManager.NavigateTo("/projectsPage");
+    }
+}

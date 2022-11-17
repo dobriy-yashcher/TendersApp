@@ -1,0 +1,58 @@
+﻿@page "/personalPage"
+
+@using TendersApp.Data
+@using TendersApp.Enums
+@using TendersApp.Users
+@using TendersApp.Components
+@inject IJSRuntime JsRuntime
+@inject MongoDb MongoDb
+
+
+<h1>Личный кабинет</h1>
+
+@switch (MongoDb.currentUser?.Role)
+{
+    case (Roles.Customer):
+        <p>Логин: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).Login))</p>
+        <p>Имя: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).FirstName))</p>
+        <p>Фамилия: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).LastName))</p>
+        <p>Почта: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).Email))</p>
+        <p>Телефон: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).PhoneNumber))</p>
+        <p>Отдел: @((MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login).Division))</p>
+
+        <CustomerComponent currentCustomer="MongoDb.CheckLoginForCustomer(MongoDb.currentUser.Login)"></CustomerComponent>
+        break;
+
+    case (Roles.Designer):
+        <p>Логин: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Login))</p>
+        <p>Организация: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Organisation))</p>
+        <p>Почта: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Email))</p>
+        <p>Телефон: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).PhoneNumber))</p>
+        <p>Адрес: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Adress))</p>
+        <p>ОГРН: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Ogrn))</p>
+        <p>ИНН: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Inn))</p>
+        <p>КПП: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Kpp))</p>
+        <p>Директор: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).Director))</p>
+        <p>Главный инженер: @((MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login).MainEngineer))</p>
+
+        <DesignerComponent currentDesigner="MongoDb.CheckLoginForDesigner(MongoDb.currentUser.Login)"></DesignerComponent>
+        break;
+
+    case (Roles.Developer):
+        <p>Логин: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Login))</p>
+        <p>Организация: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Organisation))</p>
+        <p>Почта: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Email))</p>
+        <p>Телефон: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).PhoneNumber))</p>
+        <p>Адрес: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Adress))</p>
+        <p>ОГРН: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Ogrn))</p>
+        <p>ИНН: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Inn))</p>
+        <p>КПП: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Kpp))</p>
+        <p>Директор: @((MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login).Director))</p>
+
+        <DeveloperComponent currentDeveloper="MongoDb.CheckLoginForDeveloper(MongoDb.currentUser.Login)"></DeveloperComponent>
+        break;
+}
+
+@code {
+    
+}

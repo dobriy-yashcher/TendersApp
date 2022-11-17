@@ -1,0 +1,31 @@
+﻿@using TendersApp.Data
+@using TendersApp.Users
+@inject IJSRuntime JsRuntime
+@inject TendersApp.Data.MongoDb MongoDb
+
+<EditForm Model="@currentDeveloper" OnValidSubmit="@(() => SaveData())">
+    <br /><br />
+    <label>Организация:</label><input placeholder="Организация" @bind-value="currentDeveloper.Organisation" />
+    <br /><br />
+    <label>ОГРН:</label> <input placeholder="ОГРН" @bind-value="@currentDeveloper.Ogrn"></input>
+    <br /><br />
+    <label>ИНН:</label> <input placeholder="ИНН" @bind-value="@currentDeveloper.Inn"></input>
+    <br /><br />
+    <label>КПП:</label> <input placeholder="КПП" @bind-value="@currentDeveloper.Kpp"></input>
+    <br /><br />
+    <label>Адрес:</label> <input placeholder="Адрес" @bind-value="@currentDeveloper.Adress"></input>
+    <br /><br />
+    <label>Директор:</label> <input placeholder="Директор" @bind-value="@currentDeveloper.Director"></input>
+    <br /><br />
+    <button type="submit">Save changes</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Developer currentDeveloper { get; set; } = new();
+
+    private void SaveData()
+    {
+        MongoDb.UpdateDeveloper(currentDeveloper);
+    }
+}

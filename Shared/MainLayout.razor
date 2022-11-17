@@ -1,0 +1,58 @@
+﻿@inherits LayoutComponentBase
+@inject TendersApp.Data.MongoDb userService
+@inject NavigationManager navManager
+
+<PageTitle>TendersApp</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu @ref="@_navMenu"/>
+    </div>
+
+    <main>
+        @if (userService.currentUser is null)
+        {
+            <div class="top-row px-4">
+                <NavLink class="nav-link" href="registration">
+                    <span aria-hidden="true"></span> Sign Up
+                </NavLink>
+                <NavLink class="nav-link" href="authorization">
+                    <span aria-hidden="true"></span> Log In
+                </NavLink>
+            </div>
+        }
+
+        else
+        {
+            <div class="top-row px-4">
+                <NavLink class="nav-link" href="authorization" @onclick="() => Exit()">
+                    <span aria-hidden="true"></span> Exit
+                </NavLink>
+            </div>
+        }
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code
+{
+    private NavMenu _navMenu;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (userService.currentUser is null)
+            {
+                navManager.NavigateTo("/authorization");
+            }
+            StateHasChanged();
+        }
+        _navMenu.Update = true;
+    }
+
+    private void Exit() => userService.currentUser = null;
+}

@@ -1,0 +1,77 @@
+﻿@inject TendersApp.Documents.ListDocuments defDoc
+@using TendersApp.Data
+@using TendersApp.Users
+@using Microsoft.AspNetCore.Mvc
+@inject FileSystemService fileSysServ
+@inject TendersApp.Data.MongoDb mongoConnection
+@inject TendersApp.Data.ProjectService projectService
+@inject IJSRuntime JS
+@inject NavigationManager nManager
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название документа</th>
+            <th>Название файла</th>
+            <th>Требуемый</th>
+            <th>Подтвердить</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in fileSysServ.currentProject.Documents)
+        {
+            <tr>
+                <td>@doc.Name</td>
+                <td>@doc.FileName</td>
+                <td><input type="checkbox" @bind="doc.IsRequired" /></td>
+                <td><input type="checkbox" @bind="doc.IsApproved" /></td>
+                <td><a class="form-control" href="documents/@doc.FileName" download="@doc.FileName">Download</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название документа</th>
+            <th>Название файла</th>
+            <th>Требуемый</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in fileSysServ.currentProject.ProjecterDocuments)
+        {
+            <tr>
+                <td>@doc.Name</td>
+                <td>@doc.FileName</td>
+                <td><input type="checkbox" @bind="doc.IsRequired" /></td>
+                <td><a class="form-control" href="documents/@doc.FileName" download="@doc.FileName">Download</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button @onclick="CloseComp" class="btn btn-primary mb-3" type="submit">Save changes</button>
+
+
+@code {
+    [Parameter]
+    public string? department { get; set; }
+
+    string selectedProjecter;
+    string selectedDeveloper;
+    string projectName;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    public void CloseComp()
+    {
+        projectService.UpdateProjectInDataBase(fileSysServ.currentProject);
+        nManager.NavigateTo("/projectsPage");
+    }
+}

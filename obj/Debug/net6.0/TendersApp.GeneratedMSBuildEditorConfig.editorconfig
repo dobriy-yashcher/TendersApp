@@ -1,0 +1,104 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TendersApp
+build_property.RootNamespace = TendersApp
+build_property.ProjectDir = C:\Users\damilola\source\repos\TendersApp\TendersApp\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\damilola\source\repos\TendersApp\TendersApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/CreateNewProject.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDcmVhdGVOZXdQcm9qZWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/CustomerComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21lckNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/CustomerProject.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21lclByb2plY3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/DesignerComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXNpZ25lckNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/DesignerProject.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXNpZ25lclByb2plY3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/DeveloperComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXZlbG9wZXJDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Components/DeveloperProject.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXZlbG9wZXJQcm9qZWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/AuthoPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/CreateProjectComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlUHJvamVjdENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/PersonalPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyc29uYWxQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/ProjectPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/ProjectsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/Registration.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-jehpgzraku
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-44zpvcrla9
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/damilola/source/repos/TendersApp/TendersApp/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

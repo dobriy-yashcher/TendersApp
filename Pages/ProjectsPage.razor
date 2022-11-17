@@ -1,0 +1,81 @@
+﻿@page "/projectsPage"
+@inject NavigationManager nManager
+@using TendersApp.Users
+@inject TendersApp.Data.MongoDb mongoConnection
+@using TendersApp.Documents
+@using TendersApp.Enums
+@using TendersApp.Components
+@inject TendersApp.Data.FileSystemService fileSysServ
+
+@if (mongoConnection.currentUser is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название проекта</th>
+                <th>Проектная организация</th>
+                <th>Организация застройщика</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @switch (mongoConnection.currentUser.Role)
+            {
+                case Enums.Roles.Customer:
+                    @foreach (var project in mongoConnection.GetProjects())
+                    {
+                        <tr>
+                            <td>@project.Name</td>
+                            <td>@mongoConnection.FindProjecterById(project.DesignerId)?.Organisation</td>
+                            <td>@mongoConnection.FindDeveloperById(project.DeveloperId)?.Organisation</td>
+                            <td><button class="btn btn-primary mb-3" onclick="@(() => GoToCreatedProject(project))">Go to project</button></td>
+                        </tr>
+                    }
+                    <br />
+                    <button class="btn btn-primary mb-3" @onclick="@(() => CreateNewProject())">Add new project</button>
+                    break;
+
+                case Enums.Roles.Developer:
+                    @foreach (var project in mongoConnection.GetProjects().Where(x => x.DeveloperId ==
+                                                    mongoConnection.CheckLoginForDeveloper(mongoConnection.currentUser.Login).Id))
+                    {
+                        <tr>
+                            <td>@project.Name</td>
+                            <td>@mongoConnection.FindProjecterById(project.DesignerId).Organisation</td>
+                            <td>@mongoConnection.FindDeveloperById(project.DeveloperId).Organisation</td>
+                            <td><button class="btn btn-primary mb-3" onclick="@(() => GoToCreatedProject(project))">Go to project</button></td>
+                        </tr>
+                    }
+                    break;
+
+                case Enums.Roles.Designer:
+                    @foreach (var project in mongoConnection.GetProjects().Where(x => x.DesignerId ==
+                                                    mongoConnection.CheckLoginForDesigner(mongoConnection.currentUser.Login).Id))
+                    {
+                        <tr>
+                            <td>@project.Name</td>
+                            <td>@mongoConnection.FindProjecterById(project.DesignerId).Organisation</td>
+                            <td>@mongoConnection.FindDeveloperById(project.DeveloperId).Organisation</td>
+                            <td><button class="btn btn-primary mb-3" onclick="@(() => GoToCreatedProject(project))">Go to project</button></td>
+                        </tr>
+                    }
+                    break;
+            }
+        </tbody>
+    </table>
+
+}
+
+@code {
+    public void CreateNewProject()
+    {
+        fileSysServ.currentProject = new Project();
+        nManager.NavigateTo("/projectPage");
+    }
+
+    public void GoToCreatedProject(Project project)
+    {
+        fileSysServ.currentProject = project;
+        nManager.NavigateTo("/projectPage");
+    }
+}
